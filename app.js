@@ -13,7 +13,7 @@ const errorHandler = require("./middleware/error");
 const insert = require("./routes/insert");
 const insertMulti = require("./routes/insertMulti");
 const create = require("./routes/create");
-// const update = require("./routes/update");
+const update = require("./routes/update");
 // const updateInsert = require("./routes/updateInsert");
 
 const app = express();
@@ -48,7 +48,7 @@ app.use(cors());
 app.use("/Create", create);
 app.use("/Insert", insert);
 app.use("/InsertMulti", insertMulti);
-// app.use("/update", update);
+app.use("/Update", update);
 // app.use("/updateInsert", updateInsert);
 
 // Serve static assets in production
