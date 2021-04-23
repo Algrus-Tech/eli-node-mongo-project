@@ -3,9 +3,6 @@ const asyncHandler = require("../middleware/async");
 const Mongoose = require("mongoose");
 const Table = require("../models/Table");
 
-let ModelArray = [];
-let pastQueries = [];
-
 exports.updateAndInsertDoc = asyncHandler(async (req, res, next) => {
   let table = await Table.findOne({ tableName: req.params.tableName });
 
@@ -32,7 +29,9 @@ exports.updateAndInsertDoc = asyncHandler(async (req, res, next) => {
       let currModel = ModelArray[i];
 
       foundOrNot = await currModel.find(JSON.parse(queryStr));
-      if (foundOrNot !== 0) {
+      if (foundOrNot.length !== 0) {
+        console.log("here");
+        console.log(foundOrNot);
         newData = await currModel.findOneAndUpdate(
           JSON.parse(queryStr),
           req.body

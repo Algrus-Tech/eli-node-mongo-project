@@ -46,6 +46,9 @@ app.use(hpp());
 // Enable CORS
 app.use(cors());
 
+global.ModelArray = [];
+global.pastQueries = [];
+
 app.use("/Create", create);
 app.use("/Insert", insert);
 app.use("/InsertMulti", insertMulti);

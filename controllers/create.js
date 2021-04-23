@@ -25,6 +25,9 @@ exports.createTable = asyncHandler(async (req, res, next) => {
     age: 10,
   });
 
+  pastQueries.push(req.params.tableName);
+  ModelArray.push(NewTable);
+
   res.status(200).json({
     success: true,
     data: createdTable,

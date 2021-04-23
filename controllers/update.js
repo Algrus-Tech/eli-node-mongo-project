@@ -3,9 +3,6 @@ const asyncHandler = require("../middleware/async");
 const Mongoose = require("mongoose");
 const Table = require("../models/Table");
 
-let ModelArray = [];
-let pastQueries = [];
-
 exports.updateDoc = asyncHandler(async (req, res, next) => {
   let table = await Table.findOne({ tableName: req.params.tableName });
 
