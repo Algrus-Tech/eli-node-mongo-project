@@ -15,6 +15,7 @@ const insertMulti = require("./routes/insertMulti");
 const create = require("./routes/create");
 const update = require("./routes/update");
 const updateInsert = require("./routes/updateInsert");
+const getData = require("./routes/getData");
 
 const app = express();
 
@@ -50,6 +51,7 @@ app.use("/Insert", insert);
 app.use("/InsertMulti", insertMulti);
 app.use("/Update", update);
 app.use("/UpdateInsert", updateInsert);
+app.use("/get", getData);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
