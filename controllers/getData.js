@@ -47,6 +47,10 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
         query = query.sort(sortBy);
       }
 
+      if (req.query.limit) {
+        query = query.limit(+req.query.limit);
+      }
+
       newData = await query;
 
       res.status(200).json({
@@ -67,6 +71,10 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
     if (req.query.sort) {
       const sortBy = req.query.sort.split(",").join(" ");
       query = query.sort(sortBy);
+    }
+    if (req.query.limit) {
+      console.log(req.query.limit);
+      query = query.limit(+req.query.limit);
     }
     newData = await query;
     pastQueries.push(req.params.tableName);
