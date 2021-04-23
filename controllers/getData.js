@@ -31,7 +31,13 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
       found = 1;
       let currModel = ModelArray[i];
 
-      newData = await currModel.find(JSON.parse(queryStr));
+      query = currModel.find(JSON.parse(queryStr));
+      if (req.query.sort) {
+        const sortBy = req.query.sort.split(",").join(" ");
+        query = query.sort(sortBy);
+      }
+
+      newData = await query;
 
       res.status(200).json({
         success: true,
@@ -47,8 +53,12 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
 
     NewTable = Mongoose.model(modelName, NewSchema);
 
-    newData = await NewTable.find(JSON.parse(queryStr));
-
+    query = NewTable.find(JSON.parse(queryStr));
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      query = query.sort(sortBy);
+    }
+    newData = await query;
     pastQueries.push(req.params.tableName);
     ModelArray.push(NewTable);
 
