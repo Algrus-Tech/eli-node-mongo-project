@@ -21,6 +21,19 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
     (match) => `$${match}`
   );
   console.log(queryStr);
+  console.log(JSON.parse(queryStr));
+
+  let conv_obj = JSON.parse(queryStr);
+
+  for (const key in conv_obj) {
+    if (conv_obj[key].startsWith("/")) {
+      conv_obj[key] = {
+        $regex: conv_obj[key].split("/")[1],
+      };
+    }
+  }
+
+  console.log(conv_obj);
 
   let found = 0;
   for (let i = 0; i < pastQueries.length; i++) {
@@ -28,7 +41,7 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
       found = 1;
       let currModel = ModelArray[i];
 
-      query = currModel.find(JSON.parse(queryStr));
+      query = currModel.find(conv_obj);
       if (req.query.sort) {
         const sortBy = req.query.sort.split(",").join(" ");
         query = query.sort(sortBy);
@@ -50,7 +63,7 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
 
     NewTable = Mongoose.model(modelName, NewSchema);
 
-    query = NewTable.find(JSON.parse(queryStr));
+    query = NewTable.find(conv_obj);
     if (req.query.sort) {
       const sortBy = req.query.sort.split(",").join(" ");
       query = query.sort(sortBy);
