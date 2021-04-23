@@ -5,7 +5,7 @@ const Table = require("../models/Table");
 
 exports.createTable = asyncHandler(async (req, res, next) => {
   let table = await Table.findOne({ tableName: req.params.tableName });
-
+  console.log(table);
   console.log(req.params.tableName);
 
   if (table) {
