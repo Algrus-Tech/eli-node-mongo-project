@@ -11,7 +11,7 @@ const cors = require("cors");
 const errorHandler = require("./middleware/error");
 
 const insert = require("./routes/insert");
-// const insertMulti = require("./routes/insertMulti");
+const insertMulti = require("./routes/insertMulti");
 const create = require("./routes/create");
 // const update = require("./routes/update");
 // const updateInsert = require("./routes/updateInsert");
@@ -47,7 +47,7 @@ app.use(cors());
 
 app.use("/Create", create);
 app.use("/Insert", insert);
-// app.use("/insertMulti", insertMulti);
+app.use("/InsertMulti", insertMulti);
 // app.use("/update", update);
 // app.use("/updateInsert", updateInsert);
 
