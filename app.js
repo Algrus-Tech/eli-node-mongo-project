@@ -11,10 +11,10 @@ const cors = require("cors");
 const errorHandler = require("./middleware/error");
 
 const insert = require("./routes/insert");
-const insertMulti = require("./routes/insertMulti");
+// const insertMulti = require("./routes/insertMulti");
 const create = require("./routes/create");
-const update = require("./routes/update");
-const updateInsert = require("./routes/updateInsert");
+// const update = require("./routes/update");
+// const updateInsert = require("./routes/updateInsert");
 
 const app = express();
 
@@ -45,11 +45,11 @@ app.use(hpp());
 // Enable CORS
 app.use(cors());
 
-app.use("/create", create);
-app.use("/insert", insert);
-app.use("/insertMulti", insertMulti);
-app.use("/update", update);
-app.use("/updateInsert", updateInsert);
+app.use("/Create", create);
+app.use("/Insert", insert);
+// app.use("/insertMulti", insertMulti);
+// app.use("/update", update);
+// app.use("/updateInsert", updateInsert);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
