@@ -62,7 +62,7 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
       }
 
       newData = await query;
-
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
       res.status(200).json({
         success: true,
         data: newData,
@@ -89,7 +89,7 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
     newData = await query;
     pastQueries.push(req.params.tableName);
     ModelArray.push(NewTable);
-
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.status(200).json({
       success: true,
       data: newData,

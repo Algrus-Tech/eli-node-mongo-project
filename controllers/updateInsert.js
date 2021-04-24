@@ -43,6 +43,7 @@ exports.updateAndInsertDoc = asyncHandler(async (req, res, next) => {
         newData = await currModel.create({
           ...req.body,
         });
+        res.setHeader("Content-Type", "application/json; charset=utf-8");
         res.status(200).json({
           success: true,
           data: newData,
@@ -75,7 +76,7 @@ exports.updateAndInsertDoc = asyncHandler(async (req, res, next) => {
 
       pastQueries.push(req.params.tableName);
       ModelArray.push(NewTable);
-
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
       res.status(200).json({
         success: true,
         data: newData,

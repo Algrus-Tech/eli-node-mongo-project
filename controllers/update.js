@@ -31,6 +31,7 @@ exports.updateDoc = asyncHandler(async (req, res, next) => {
         JSON.parse(queryStr),
         req.body
       );
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
       res.status(200).json({
         success: true,
       });
@@ -48,7 +49,7 @@ exports.updateDoc = asyncHandler(async (req, res, next) => {
 
     pastQueries.push(req.params.tableName);
     ModelArray.push(NewTable);
-
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.status(200).json({
       success: true,
     });

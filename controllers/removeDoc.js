@@ -18,6 +18,7 @@ exports.removeDocById = asyncHandler(async (req, res, next) => {
       found = 1;
       let currModel = ModelArray[i];
       await currModel.findByIdAndDelete(req.params.docId);
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
       res.status(204).json({
         success: true,
       });
@@ -35,7 +36,7 @@ exports.removeDocById = asyncHandler(async (req, res, next) => {
 
     pastQueries.push(req.params.tableName);
     ModelArray.push(NewTable);
-
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.status(204).json({
       success: true,
     });

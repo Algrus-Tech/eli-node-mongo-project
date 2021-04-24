@@ -32,7 +32,7 @@ exports.insertMultiIntoTable = asyncHandler(async (req, res, next) => {
         console.log(newData);
         completeData.push(newData);
       });
-
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
       res.status(200).json({
         success: true,
       });
@@ -58,7 +58,7 @@ exports.insertMultiIntoTable = asyncHandler(async (req, res, next) => {
 
     pastQueries.push(req.params.tableName);
     ModelArray.push(NewTable);
-
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.status(200).json({
       success: true,
     });
