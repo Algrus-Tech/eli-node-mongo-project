@@ -32,6 +32,12 @@ exports.fetchData = asyncHandler(async (req, res, next) => {
       };
     }
 
+    if (conv_obj[key].startsWith("?")) {
+      conv_obj[key] = {
+        $regex: ".*" + conv_obj[key].split("?")[1] + ".*",
+      };
+    }
+
     if (!isNaN(conv_obj[key])) {
       conv_obj[key] = +conv_obj[key];
     }
